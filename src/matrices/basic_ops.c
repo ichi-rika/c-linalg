@@ -1,4 +1,4 @@
-#include "matrices/matrix.h"
+#include <matrices/matrix.h>
 
 
 void matrix_radd(struct matrix *mat_a, struct matrix *mat_b) {

@@ -1,4 +1,4 @@
-#include "matrices/matrix.h"
+#include <matrices/matrix.h>
 
 struct matrix *matrix_mul(struct matrix *mat_a, struct matrix *mat_b) {
     if (mat_a->n_cols != mat_b->n_rows)

@@ -87,10 +87,10 @@ struct matrix *matrix_id(ind_t n_dim);
     for (mind_t j = 0; j < (mat)->n_cols; ++j)
 
 
-#include "matrices/matrix_basic_ops.h"
+#include <matrices/matrix_basic_ops.h>
 
 /*--- Line-wise operations ---*/
 
-#include "matrices/matrix_line_ops.h"
+#include <matrices/matrix_line_ops.h>
 
 #endif // H_MATRIX_H

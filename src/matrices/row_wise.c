@@ -1,4 +1,4 @@
-#include "matrices/matrix.h"
+#include <matrices/matrix.h>
 
 void matrix_rowswap(struct matrix *mat, ind_t i1, ind_t i2) {
     data_t x;

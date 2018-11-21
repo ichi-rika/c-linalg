@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <memory.h>
 
-#include "matrices/matrix.h"
+#include <matrices/matrix.h>
 
 
 struct matrix *matrix_alloc(const size_t n_rows, const size_t n_cols) {

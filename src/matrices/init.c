@@ -1,4 +1,4 @@
-#include "matrices/matrix.h"
+#include <matrices/matrix.h>
 
 
 struct matrix *matrix_zero(ind_t n_rows, ind_t n_cols) {

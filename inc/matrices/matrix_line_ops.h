@@ -1,7 +1,7 @@
 #ifndef H_MATRIX_LINE_OPS_H
 #define H_MATRIX_LINE_OPS_H
 
-#include "matrices/matrix.h"
+#include <matrices/matrix.h>
 
 /* Swaps two rows in place. */
 void matrix_rowswap(struct matrix *mat, ind_t i1, ind_t i2);

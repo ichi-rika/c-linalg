@@ -1,4 +1,4 @@
-#include "matrices/matrix.h"
+#include <matrices/matrix.h>
 
 data_t matrix_diagprod(struct matrix *mat) {
     data_t x = 1.0;
