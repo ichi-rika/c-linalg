@@ -34,6 +34,11 @@ SRC_DIR := src
 INC_DIR := inc
 BIN_DIR := bin
 
+# Test flags (ignore if no test)
+TEST_TARGET := tests
+TEST_DIR := tests
+TEST_FLAGS = $(CFLAGS)
+
 # Hidden directories for intermediate files
 OBJ_DIR := .obj
 DEP_DIR := .dep
@@ -92,6 +97,8 @@ $(shell $(call cpdirtree,$(SRC_DIR),$(DEP_DIR)))
 C_FILES := $(shell find $(SRC_DIR) -type f -iname "*.c")
 H_FILES := $(shell find $(INC_DIR) -type f -iname "*.h" 2>/dev/null)
 
+TEST_C_FILES := $(shell find $(TEST_DIR) -type f -iname "*.c" 2>/dev/null)
+
 # Map each source file to an object and a dependency file.
 O_FILES := $(C_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 D_FILES := $(C_FILES:$(SRC_DIR)/%.c=$(DEP_DIR)/%.d)
@@ -110,7 +117,15 @@ clean:
 clean-dist: clean
 	-rm -f $(BIN_DIR)/$(TARGET)
 
+clean-test:
+	-rm -f $(BIN_DIR)/$(TEST_TARGET)
+
 re: clean-dist all
+
+test: $(TEST_TARGET)
+	$(BIN_DIR)/$(TEST_TARGET)
+
+$(TEST_TARGET): $(BIN_DIR)/$(TEST_TARGET)
 
 ##--- Building make rules
 
@@ -126,4 +141,11 @@ $(DEP_DIR)/%.d: ;
 
 -include $(D_FILES)
 
+##--- Building Test program
 
+$(BIN_DIR)/$(TEST_TARGET): $(TEST_C_FILES)
+ifeq ($(strip $(TEST_C_FILES)),)
+	$(error "No source files in $(TEST_DIR) directory")
+else
+	$(CC) $(TEST_FLAGS) -Icunit/include -Wl,cunit/lib/libcunit.a $+ -o $@
+endif
